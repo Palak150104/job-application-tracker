@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#f5f6fa">
+    <title>CareerTrack | Job Application Tracker</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+
+    <div class="app">
+        <aside class="sidebar">
+            <a href="#" class="brand">
+                <span class="brand-icon">C</span>
+                <span>CareerTrack</span>
+            </a>
+
+            <p class="nav-label">WORKSPACE</p>
+            <nav>
+                <a href="#dashboard" class="nav-link active">▦ <span>Dashboard</span></a>
+                <a href="#applications" class="nav-link">▤ <span>Applications</span></a>
+                <a href="#applicationForm" class="nav-link">＋ <span>Add application</span></a>
+            </nav>
+
+            <div class="sidebar-bottom">
+                <div class="profile-avatar">P</div>
+                <div>
+                    <strong>My Career</strong>
+                    <p>Job search workspace</p>
+                </div>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <header class="topbar">
+                <div>
+                    <p class="eyebrow">YOUR CAREER WORKSPACE</p>
+                    <h1>Job Application Tracker</h1>
+                    <p class="subtitle">Keep your job search organized and moving forward.</p>
+                </div>
+                <a href="#applicationForm" class="button primary top-add">+ Add application</a>
+            </header>
+
+            <section id="dashboard">
+                <div class="section-title">
+                    <div>
+                        <h2>Overview</h2>
+                        <p>Your job search at a glance.</p>
+                    </div>
+                    <span class="date-label" id="todayLabel"></span>
+                </div>
+
+                <div class="stats-grid">
+                    <article class="stat-card">
+                        <div class="stat-heading">
+                            <span>Total applications</span>
+                            <span class="stat-icon purple">▤</span>
+                        </div>
+                        <strong id="totalCount">0</strong>
+                        <p>Applications tracked</p>
+                    </article>
+
+                    <article class="stat-card">
+                        <div class="stat-heading">
+                            <span>Applied</span>
+                            <span class="stat-icon blue">↗</span>
+                        </div>
+                        <strong id="appliedCount">0</strong>
+                        <p>Awaiting a response</p>
+                    </article>
+
+                    <article class="stat-card">
+                        <div class="stat-heading">
+                            <span>Interviews</span>
+                            <span class="stat-icon orange">◷</span>
+                        </div>
+                        <strong id="interviewCount">0</strong>
+                        <p>Interview-stage applications</p>
+                    </article>
+
+                    <article class="stat-card">
+                        <div class="stat-heading">
+                            <span>Offers</span>
+                            <span class="stat-icon green">✓</span>
+                        </div>
+                        <strong id="offerCount">0</strong>
+                        <p>Offers received</p>
+                    </article>
+                </div>
+            </section>
+
+            <section class="panel form-panel" id="applicationForm">
+                <div class="section-title">
+                    <div>
+                        <p class="eyebrow">APPLICATION DETAILS</p>
+                        <h2 id="formHeading">Add a job application</h2>
+                        <p>Record a new opportunity or update an existing one.</p>
+                    </div>
+                </div>
+
+                <form id="jobForm">
+                    <div class="field">
+                        <label for="company">Company name *</label>
+                        <input id="company" type="text" maxlength="100"
+                               placeholder="e.g. Google" required>
+                    </div>
+
+                    <div class="field">
+                        <label for="role">Job title *</label>
+                        <input id="role" type="text" maxlength="100"
+                               placeholder="e.g. Software Engineer" required>
+                    </div>
+
+                    <div class="field">
+                        <label for="location">Location</label>
+                        <input id="location" type="text" maxlength="100"
+                               placeholder="e.g. Bengaluru / Remote">
+                    </div>
+
+                    <div class="field">
+                        <label for="jobType">Employment type</label>
+                        <select id="jobType">
+                            <option>Full-time</option>
+                            <option>Internship</option>
+                            <option>Part-time</option>
+                            <option>Contract</option>
+                        </select>
+                    </div>
+
+                    <div class="field">
+                        <label for="status">Application status *</label>
+                        <select id="status" required>
+                            <option value="Applied">Applied</option>
+                            <option value="Interview">Interview</option>
+                            <option value="Offer">Offer</option>
+                            <option value="Rejected">Rejected</option>
+                            <option value="Withdrawn">Withdrawn</option>
+                        </select>
+                    </div>
+
+                    <div class="field">
+                        <label for="appliedDate">Date applied *</label>
+                        <input id="appliedDate" type="date" required>
+                    </div>
+
+                    <div class="field">
+                        <label for="deadline">Next interview / follow-up</label>
+                        <input id="deadline" type="date">
+                    </div>
+
+                    <div class="field">
+                        <label for="jobUrl">Job posting URL</label>
+                        <input id="jobUrl" type="url" maxlength="1000"
+                               placeholder="https://company.com/jobs/...">
+                    </div>
+
+                    <div class="field full-width">
+                        <label for="notes">Notes</label>
+                        <textarea id="notes" rows="3" maxlength="2000"
+                                  placeholder="Recruiter details, interview preparation, follow-up notes..."></textarea>
+                    </div>
+
+                    <div class="form-actions full-width">
+                        <button class="button primary" type="submit" id="submitButton">
+                            Save application
+                        </button>
+                        <button class="button secondary hidden" type="button" id="cancelButton">
+                            Cancel edit
+                        </button>
+                        <p id="formMessage" role="status"></p>
+                    </div>
+                </form>
+            </section>
+
+            <section class="panel applications-panel" id="applications">
+                <div class="section-title">
+                    <div>
+                        <p class="eyebrow">YOUR OPPORTUNITIES</p>
+                        <h2>Applications</h2>
+                        <p>Search, filter, and manage your applications.</p>
+                    </div>
+                    <span class="count-pill" id="visibleCount">0 applications</span>
+                </div>
+
+                <div class="filters">
+                    <input id="searchInput" type="search"
+                           placeholder="Search company or role..."
+                           aria-label="Search applications">
+
+                    <select id="statusFilter" aria-label="Filter by status">
+                        <option value="All">All statuses</option>
+                        <option value="Applied">Applied</option>
+                        <option value="Interview">Interview</option>
+                        <option value="Offer">Offer</option>
+                        <option value="Rejected">Rejected</option>
+                        <option value="Withdrawn">Withdrawn</option>
+                    </select>
+
+                    <select id="sortFilter" aria-label="Sort applications">
+                        <option value="newest">Newest applied</option>
+                        <option value="oldest">Oldest applied</option>
+                        <option value="company">Company A–Z</option>
+                        <option value="upcoming">Upcoming follow-ups</option>
+                    </select>
+                </div>
+
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Company / Role</th>
+                                <th>Location</th>
+                                <th>Date applied</th>
+                                <th>Status</th>
+                                <th>Follow-up</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="applicationList"></tbody>
+                    </table>
+                </div>
+
+                <div class="empty-state" id="emptyState">
+                    <div class="empty-symbol">▤</div>
+                    <h3>No applications yet</h3>
+                    <p>Add your first application to start tracking your job search.</p>
+                    <a href="#applicationForm" class="button primary">+ Add application</a>
+                </div>
+            </section>
+
+            <footer>
+                <p>CareerTrack · Built with HTML, CSS and JavaScript.</p>
+                <p>Your application data stays in this browser.</p>
+            </footer>
+        </main>
+    </div>
+
+    <dialog id="deleteDialog">
+        <h2>Delete this application?</h2>
+        <p>This application will be removed from your tracker.</p>
+        <div class="dialog-actions">
+            <button type="button" class="button secondary" id="keepButton">Cancel</button>
+            <button type="button" class="button danger" id="confirmDeleteButton">Delete</button>
+        </div>
+    </dialog>
+
+</body>
+</html>
